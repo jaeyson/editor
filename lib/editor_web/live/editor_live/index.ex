@@ -13,13 +13,23 @@ defmodule EditorWeb.EditorLive.Index do
   end
 
   @impl true
-  def handle_event("save", %{"editor" => input, "save" => "preview"}, socket) do
-    %{"html_input" => html_input} = input
-    {:noreply, push_event(socket, "preview", %{html_input: html_input})}
+  def handle_event(
+        "save",
+        %{"editor" => %{"html_input" => html_input}, "save" => "preview"},
+        socket
+      ) do
+    socket =
+      socket
+      |> assign(:preview, html_input)
+
+    {:noreply, socket}
   end
 
-  @impl true
-  def handle_event("save", %{"editor" => _input, "save" => "save"}, socket) do
+  def handle_event(
+        "save",
+        %{"editor" => %{"html_input" => _html_input}, "save" => "save"},
+        socket
+      ) do
     {:noreply, socket}
   end
 end
