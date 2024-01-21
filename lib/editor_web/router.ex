@@ -17,7 +17,7 @@ defmodule EditorWeb.Router do
   scope "/", EditorWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", EditorLive.Index, :index
   end
 
   # Other scopes may use custom stacks.

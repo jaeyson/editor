@@ -1,5 +1,23 @@
 # Editor
 
+## Misc
+warning: Passing an atom to "for" in the form component is deprecated.
+Instead of:
+
+    <.form :let={f} for={:editor} ...>
+
+You might do:
+
+    <.form :let={f} for={%{}} as={:editor} ...>
+
+Or, if you prefer, use to_form to create a form in your LiveView:
+
+    assign(socket, form: to_form(%{}, as: :editor))
+
+and then use it in your templates (no :let required):
+
+    <.form for={@form}>
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
